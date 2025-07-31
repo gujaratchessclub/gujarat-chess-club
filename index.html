@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gujarat State FIDE Titles Players</title>
+  <style>
+    body { font-family: Arial; background: #f8f8f8; padding: 20px; }
+    table { border-collapse: collapse; width: 100%; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
+    th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }
+    th { background-color: #2c3e50; color: #fff; }
+    caption { font-size: 1.5em; margin: 10px; }
+  </style>
+</head>
+<body>
+
+<h2>Gujarat State FIDE Titles Players List</h2>
+<table id="players-table">
+  <thead>
+    <tr>
+      <th>Sr No</th>
+      <th>FIDE ID</th>
+      <th>Title</th>
+      <th>Name</th>
+      <th>Standard</th>
+      <th>Rapid</th>
+      <th>Blitz</th>
+      <th>District</th>
+      <th>Birth Year</th>
+      <th>Gender</th>
+    </tr>
+  </thead>
+  <tbody id="players-body">
+    <!-- Data will be inserted here -->
+  </tbody>
+</table>
+
+<script>
+  const fideIds = [
+    "5023335", "5004195", "5019850", "25064967", "5040680",
+    "25184237", "25968343", "5073022", "25679988", "35007319",
+    "25679791", "25793136", "25156527"
+  ];
+
+  const tableBody = document.getElementById("players-body");
+
+  fideIds.forEach(async (id, index) => {
+    const response = await fetch(`https://fide-api.cassiofb.dev/player/${id}`);
+    const data = await response.json();
+
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${index + 1}</td>
+      <td><a href="https://ratings.fide.com/profile/${id}" target="_blank">${id}</a></td>
+      <td>${data.title || ""}</td>
+      <td>${data.name}</td>
+      <td>${data.standard_rating || "-"}</td>
+      <td>${data.rapid_rating || "-"}</td>
+      <td>${data.blitz_rating || "-"}</td>
+      <td></td> <!-- District blank for now -->
+      <td>${data.birth_year || "-"}</td>
+      <td>${data.gender || "-"}</td>
+    `;
+    tableBody.appendChild(row);
+  });
+</script>
+
+</body>
+</html>
