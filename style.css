@@ -1,0 +1,33 @@
+/* Table Styling with Blue Borders */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background: white;
+  border: 2px solid #0073e6; /* Blue outer border */
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #0073e6; /* Blue inner borders */
+  text-align: left;
+}
+
+th {
+  background: #d9ecff; /* Light blue header background */
+  color: #003366; /* Dark blue text */
+  font-weight: bold;
+}
+
+tr:hover {
+  background: #f0f8ff; /* Very light blue hover */
+}
+
+a {
+  color: #0073e6;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
